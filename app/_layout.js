@@ -12,6 +12,10 @@ import {
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Provider} from 'react-redux'
+import { store } from "../store";
+
+
 
 
 
@@ -42,6 +46,8 @@ export default function Layout() {
   }
 
   return (
+    
+    <Provider store={store}>
     <Stack
       onLayout={onLayoutRootView}
       screenOptions={{
@@ -115,5 +121,6 @@ export default function Layout() {
         }}
       />
     </Stack>
+    </Provider>
   );
 }

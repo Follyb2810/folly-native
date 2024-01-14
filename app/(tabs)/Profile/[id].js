@@ -4,22 +4,27 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 // import { LinearGradient } from 'react-native-linear-gradient';
 import ApiBaseUrl from './../../../utils/ApiBaseUrl'
 import { LinearGradient } from 'expo-linear-gradient';
+import { useGetSingleUserQuery } from '../../../api/abinoSlice';
 const SingleUser = () => {
     const route = useRouter();
     const { id} = useLocalSearchParams();
     const [userImage, setUserImage] = useState(null);
     const [useDetails, setuseDetails] = useState({});
+    const userId = id ? id.toString() : "";
+    // console.log(userIdString);
+    console.log(userId)
+    console.log(id)
+    const {data, isLoading, isSuccess, isError, error } = useGetSingleUserQuery(userId)
+    console.log(data)
     console.log(id)
     useEffect(() => {
       const getProfile = async () => {
         try {
-
           const userIdString = "659b0911e2f15949195073c9";
           // const userId = id.toString();
-          const userId = id ? id.toString() : "";
-          console.log(userIdString);
-          console.log(userId)
-          console.log(id)
+         
+          // const resp = singeleUser(userId)
+          // console.log(resp+'from rkt')
           const res = await ApiBaseUrl.get('/auth/singleUser', {
             params: { id: userId },
           });
